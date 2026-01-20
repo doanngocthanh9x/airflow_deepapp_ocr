@@ -1,0 +1,26 @@
+paddlepaddle==2.6.2
+paddleocr==2.7.3
+vietocr==0.3.11
+torch>=2.2.0
+opencv-python
+shapely
+pyclipper
+lmdb
+onnxruntime
+protobuf>=3.20.2
+# Data & utils
+pandas
+requests
+python-dateutil
+opencv-python
+Pillow
+numpy==1.26.4
+# Logging / config
+pyyaml
+tqdm
+ultralytics
+psycopg2-binary
+mysqlclient
+# Oonx 
+onnxruntime
+onnx
