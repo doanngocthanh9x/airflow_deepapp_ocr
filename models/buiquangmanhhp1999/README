@@ -1,0 +1,14 @@
+<!-- 
+This README file provides an overview of the project cloned from the ConvertVietOcr2Onnx repository.
+It includes a tutorial link for converting deep learning models to ONNX format, along with a sample image
+demonstrating OCR output for Vietnamese text, such as 'Mâm non: 141 thí sinh'.
+-->
+# Clone from [ConvertVietOcr2Onnx](https://github.com/buiquangmanhhp1999/ConvertVietOcr2Onnx)
+
+Tutorial: [Chuyển đổi mô hình học sâu về ONNX](https://viblo.asia/p/chuyen-doi-mo-hinh-hoc-sau-ve-onnx-bWrZnz4vZxw)
+
+![title](https://github.com/buiquangmanhhp1999/ConvertVietOcr2Onnx/blob/master/sample/35944.png?raw=true)
+
+```sql
+ Out[28]:'Mâm non: 141 thí sinh'
+```

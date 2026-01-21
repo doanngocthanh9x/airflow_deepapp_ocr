@@ -81,6 +81,13 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/webapp:/opt/airflow/webapp
+    - ${AIRFLOW_PROJ_DIR:-.}/services:/opt/airflow/services
+    - ${AIRFLOW_PROJ_DIR:-.}/models:/opt/airflow/models
+    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
+    - ${AIRFLOW_PROJ_DIR:-.}/models/.paddleocr:/home/airflow/.paddleocr
+    - ${AIRFLOW_PROJ_DIR:-.}/models/.vietocr_cache:/home/airflow/.vietocr_cache
+    - ${AIRFLOW_PROJ_DIR:-.}/models/.torch_cache:/home/airflow/.cache/torch
+    - ${AIRFLOW_PROJ_DIR:-.}/models/.paddle_cache:/home/airflow/.cache/paddle
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -108,14 +115,13 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
       - mysql-db-volume:/var/lib/mysql
+      - ./mysql-init.sql:/docker-entrypoint-initdb.d/01-init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s

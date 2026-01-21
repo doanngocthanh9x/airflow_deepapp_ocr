@@ -66,17 +66,30 @@ class VietOCRVocabProvider:
     def get_vocab(config_dir=None):
         """Load vocab from config files - must load base.yml first!"""
         if config_dir is None:
-            config_dir = get_path('webapp') / 'ConvertVietOcr2Onnx' / 'config'
+            # Try multiple paths
+            paths_to_try = [
+                get_path('models') / 'buiquangmanhhp1999' / 'config',  # New path
+                get_path('webapp') / 'ConvertVietOcr2Onnx' / 'config',  # Old path
+            ]
+            
+            config_dir = None
+            for path in paths_to_try:
+                if (path / 'base.yml').exists():
+                    config_dir = path
+                    break
+            
+            if config_dir is None:
+                raise ValueError(f"Config directory not found! Tried: {paths_to_try}")
         
         import yaml
         
         # Load base.yml first (has vocab)
-        base_yml = config_dir / 'base.yml'
+        base_yml = Path(config_dir) / 'base.yml'
         with open(base_yml, encoding='utf-8') as f:
             config = yaml.safe_load(f)
         
         # Merge with vgg-seq2seq.yml if exists
-        vgg_yml = config_dir / 'vgg-seq2seq.yml'
+        vgg_yml = Path(config_dir) / 'vgg-seq2seq.yml'
         if vgg_yml.exists():
             with open(vgg_yml, encoding='utf-8') as f:
                 vgg_config = yaml.safe_load(f)
@@ -93,7 +106,7 @@ class VietOCRVocabProvider:
 class VietOCROnnxInference:
     """Vietnamese OCR using ONNX Runtime"""
     
-    def __init__(self, cnn_model=None, encoder_model=None, decoder_model=None, vocab=None):
+    def __init__(self, cnn_model=None, encoder_model=None, decoder_model=None, vocab=None, config_dir=None):
         """
         Initialize ONNX models
         
@@ -102,10 +115,11 @@ class VietOCROnnxInference:
             encoder_model: Path to Encoder ONNX model
             decoder_model: Path to Decoder ONNX model
             vocab: VietOCRVocab instance
+            config_dir: Path to config directory (for vocab loading)
         """
         # Use default paths if not provided
         if cnn_model is None:
-            weight_dir = get_path('webapp') / 'ConvertVietOcr2Onnx' / 'weight'
+            weight_dir = get_path('models') / 'buiquangmanhhp1999/weights'
             cnn_model = str(weight_dir / 'cnn.onnx')
             encoder_model = str(weight_dir / 'encoder.onnx')
             decoder_model = str(weight_dir / 'decoder.onnx')
@@ -126,7 +140,7 @@ class VietOCROnnxInference:
         
         # Load vocab
         if vocab is None:
-            vocab = VietOCRVocabProvider.get_vocab()
+            vocab = VietOCRVocabProvider.get_vocab(config_dir)
         self.vocab = vocab
         
         self.sos_token = 1

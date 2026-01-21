@@ -1,0 +1,29 @@
+{
+  "model_name": "mobilenet_v3_small",
+  "image_size": 224,
+  "num_classes": 10,
+  "classes": [
+    "cccd_12_number_back",
+    "cccd_12_number_front",
+    "cccd_new_back",
+    "cccd_new_front",
+    "cccd_qr_back",
+    "cccd_qr_front",
+    "cmnd_12_number_front",
+    "cmnd_back",
+    "cmnd_front",
+    "giay_khai_sinh"
+  ],
+  "normalize": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  }
+}

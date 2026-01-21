@@ -24,3 +24,7 @@ mysqlclient
 # Oonx 
 onnxruntime
 onnx
+
+# Remove background
+rembg>=2.0.50
+scikit-learn

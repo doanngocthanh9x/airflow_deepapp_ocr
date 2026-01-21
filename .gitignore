@@ -3,5 +3,9 @@ __pycache__/
 *.pyc
 test_img
 logs
-models
 webapp
+dags/data/*
+models/doc_classifier/dataset
+*.png
+*.jpg
+*.jpeg
