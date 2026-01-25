@@ -1,0 +1,16 @@
+Line 1:  Figure 1 0 X
+Line 2: cccd - (74, 976, 833, 1503)
+Line 3: Dcp.Tydo-Hah ph CONGHOAXAHOI CHUNGHIAVIETNAM
+Line 4: SOCIALSTREPUBLICOFVIETNAM
+Line 5: CAN CUO'C CONG DAN
+Line 6: Citizen Identity Card 
+Line 7: 6/N031207018875
+Line 8: Ho va ten/ Full name
+Line 9: BUIANH TU
+Line 10: Ngay sinhDae of bh 14/10/2007
+Line 11: Gibi tinh/SexNarnQubc tich/NaonyViet Narm
+Line 12: Que quan Place cf ongin
+Line 13: Van Phong.Cat Hai.Hai Phong
+Line 14: Noi thuong tr Place of residenceThon Trung Lam
+Line 15: Van Phong.Cat Hai.Hai Phong
+Line 16: AQH

@@ -55,12 +55,12 @@ x-airflow-common:
     - ${ENV_FILE_PATH:-.env}
   environment:
     &airflow-common-env
+    PYTHONPATH: /home/airflow/venv/lib/python3.10/site-packages
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
-    AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     #Dags Mẫu
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
@@ -88,6 +88,8 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/models/.vietocr_cache:/home/airflow/.vietocr_cache
     - ${AIRFLOW_PROJ_DIR:-.}/models/.torch_cache:/home/airflow/.cache/torch
     - ${AIRFLOW_PROJ_DIR:-.}/models/.paddle_cache:/home/airflow/.cache/paddle
+    # Mount .venv local để đồng bộ packages
+    - ${AIRFLOW_PROJ_DIR:-.}/.venv:/home/airflow/venv
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on

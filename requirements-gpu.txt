@@ -1,0 +1,42 @@
+# GPU versions - includes CUDA-enabled packages
+# Usage: Build with: docker build --build-arg BUILD_TYPE=gpu
+# Or: docker-compose up with AIRFLOW_BUILD_TYPE=gpu
+
+torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121
+paddlepaddle==2.6.2
+paddleocr==2.7.3
+vietocr==0.3.11
+onnx
+onnxruntime-gpu
+protobuf>=3.20.2
+
+# Vision & utils
+opencv-python
+shapely
+pyclipper
+lmdb
+Pillow
+numpy==1.26.4
+
+# Data processing
+pandas
+requests
+python-dateutil
+
+# Logging / config
+pyyaml
+tqdm
+ultralytics
+psycopg2-binary
+mysqlclient
+
+# NLP & transformers
+transformers 
+datasets 
+seqeval
+underthesea
+vncorenlp
+
+# Utilities
+rembg>=2.0.50
+scikit-learn

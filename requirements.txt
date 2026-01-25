@@ -1,30 +1,42 @@
+# Core ML packages - CPU versions for faster, lighter builds
+# For GPU, see requirements-gpu.txt
+torch==2.2.0
+torchvision==0.17.0
 paddlepaddle==2.6.2
 paddleocr==2.7.3
 vietocr==0.3.11
-torch>=2.2.0
+onnx
+onnxruntime
+protobuf>=3.20.2
+
+# Vision & utils
 opencv-python
 shapely
 pyclipper
 lmdb
-onnxruntime
-protobuf>=3.20.2
-# Data & utils
+Pillow
+numpy==1.26.4
+
+# Data processing
 pandas
 requests
 python-dateutil
-opencv-python
-Pillow
-numpy==1.26.4
+
 # Logging / config
 pyyaml
 tqdm
-ultralytics
+ultralytics==8.0.225
 psycopg2-binary
 mysqlclient
-# Oonx 
-onnxruntime
-onnx
 
-# Remove background
+# NLP & transformers (pinned CPU versions)
+transformers==4.40.2
+datasets==2.18.0
+seqeval
+underthesea
+vncorenlp
+
+# Utilities
 rembg>=2.0.50
 scikit-learn
+playwright
